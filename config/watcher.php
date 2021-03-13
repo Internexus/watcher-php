@@ -10,7 +10,7 @@ return [
     |
     */
 
-    'key' => env('LARACATCH_API_KEY', null),
+    'key' => env('WATCHER_API_KEY', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -20,7 +20,7 @@ return [
     | Remote endpoint to send data.
     |
     */
-    'url' => env('LARACATCH_URL', 'http://server/api/'),
+    'url' => env('WATCHER_URL', 'http://api.internexusweb.com.br/watcher/api/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -31,7 +31,7 @@ return [
     |
     */
 
-    'query' => env('LARACATCH_QUERY', true),
+    'query' => env('WATCHER_QUERY', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'bindings' => env('LARACATCH_QUERY_BINDINGS', false),
+    'bindings' => env('WATCHER_QUERY_BINDINGS', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'user' => env('LARACATCH_USER', true),
+    'user' => env('WATCHER_USER', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'email' => env('LARACATCH_EMAIL', true),
+    'email' => env('WATCHER_EMAIL', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -76,7 +76,7 @@ return [
     |
     */
 
-    'notifications' => env('LARACATCH_NOTIFICATIONS', true),
+    'notifications' => env('WATCHER_NOTIFICATIONS', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -87,7 +87,7 @@ return [
     |
     */
 
-    'views' => env('LARACATCH_VIEWS', true),
+    'views' => env('WATCHER_VIEWS', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -98,7 +98,7 @@ return [
     |
     */
 
-    'job' => env('LARACATCH_JOB', true),
+    'job' => env('WATCHER_JOB', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -109,7 +109,7 @@ return [
     |
     */
 
-    'redis' => env('LARACATCH_REDIS', true),
+    'redis' => env('WATCHER_REDIS', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -120,7 +120,7 @@ return [
     |
     */
 
-    'unhandled_exceptions' => env('LARACATCH_UNHANDLED_EXCEPTIONS', true),
+    'unhandled_exceptions' => env('WATCHER_UNHANDLED_EXCEPTIONS', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -142,7 +142,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Add at this list all command signature that you don't want monitoring
-    | in your LARACATCH dashboard.
+    | in your WATCHER dashboard.
     |
     */
 
@@ -180,7 +180,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Add at this list the url schemes that you don't want monitoring
-    | in your LARACATCH dashboard. You can also use wildcard expression (*).
+    | in your WATCHER dashboard. You can also use wildcard expression (*).
     |
     */
 
@@ -198,7 +198,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Add at this list the job classes that you don't want monitoring
-    | in your LARACATCH dashboard.
+    | in your WATCHER dashboard.
     |
     */
 

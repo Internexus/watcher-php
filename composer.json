@@ -22,7 +22,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Internexus\\Watcher\\LaracatchServiceProvider"
+                "Internexus\\Watcher\\WatcherServiceProvider"
             ],
             "aliases": {
                 "Watcher" : "Internexus\\Watcher\\Facades\\Watcher"
