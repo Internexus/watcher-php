@@ -2,17 +2,16 @@
 
 namespace Internexus\Watcher;
 
-use GuzzleHttp\Client;
 use Internexus\Watcher\Entities\Entity;
 
 class Http
 {
     /**
-     * GuzzleHttp Client.
+     * CURL command path.
      *
-     * @var GuzzleHttp\Client
+     * @var string
      */
-    private $http;
+    protected $curlPath = 'curl';
 
     /**
      * Add an entry to queue.
@@ -30,12 +29,6 @@ class Http
     public function __construct(Config $config)
     {
         $this->config = $config;
-        $this->http = new Client([
-            'base_uri' => $this->config->getUrl(),
-            'headers' => [
-                'Accept' => 'application/json',
-            ]
-        ]);
     }
 
     /**
@@ -50,6 +43,19 @@ class Http
     }
 
     /**
+     * Get request headers.
+     *
+     * @return array
+     */
+    protected function getHeaders()
+    {
+        return [
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+        ];
+    }
+
+    /**
      * Send POST request.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -57,14 +63,44 @@ class Http
      */
     public function send()
     {
-        $url = 'ingest/' . $this->config->getToken();
+        $url = $this->config->getUrl() . 'ingest/' . $this->config->getToken();
+        $data = json_encode(['ingest' => $this->entities]);
+        $cmd = "{$this->curlPath} -X POST";
 
-        $res = $this->http->request('POST', $url, [
-            'json' => [
-                'ingest' => $this->entities
-            ]
-        ]);
+        foreach ($this->getHeaders() as $name => $value) {
+            $cmd .= " --header \"$name: $value\"";
+        }
 
-        return $res;
+        $cmd .= " --data {$this->getPayload($data)} {$url} --max-time 5";
+
+        // Curl will run in the background
+        if (OS::isWin()) {
+            $cmd = "start /B {$cmd} > NUL";
+
+            if (substr($data, 0, 1) === '@') {
+                $cmd .= ' & timeout 1 > NUL & del /f ' . str_replace('@', '', $data);
+            }
+        } else {
+            $cmd .= " > /dev/null 2>&1 &";
+        }
+
+        proc_close(proc_open($cmd, [], $pipes));
+    }
+
+    /**
+     * Escape character to use in the CLI.
+     *
+     * Compatible to send data via file path: @../file/path.dat
+     *
+     * @param $string
+     * @return mixed
+     */
+    protected function getPayload($string)
+    {
+        return OS::isWin()
+            // https://stackoverflow.com/a/30224062/5161588
+            ? '"' . str_replace('"', '""', $string) . '"'
+            // http://stackoverflow.com/a/1250279/871861
+            : "'" . str_replace("'", "'\"'\"'", $string) . "'";
     }
 }

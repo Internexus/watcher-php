@@ -27,7 +27,7 @@ class Config
     public function __construct($url, $token)
     {
         $this->setUrl($url);
-        $this->setToken($token);
+        $this->token = $token;
     }
 
     /**

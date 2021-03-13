@@ -95,6 +95,6 @@ class WebRequestMonitoring implements TerminableInterface
      */
     protected function buildTransactionName($request)
     {
-        return $request->method() . ' ' . $request->path();
+        return $request->method() . ' /' . ltrim($request->path(), '/');
     }
 }
