@@ -1,0 +1,32 @@
+{
+    "name": "internexus/watcher-php",
+    "description": "PHP monitoring package",
+    "keywords": ["php", "laravel", "exception", "monitoring"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nícolas Huber",
+            "email": "nicolasluishuber@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.0",
+        "laravel/framework": "7.*|8.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Internexus\\Watcher\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Internexus\\Watcher\\LaracatchServiceProvider"
+            ],
+            "aliases": {
+                "Watcher" : "Internexus\\Watcher\\Facades\\Watcher"
+            }
+        }
+    }
+}
