@@ -89,4 +89,14 @@ class Config
     {
         return $this->token;
     }
+
+    /**
+     * Max size of a POST request content.
+     *
+     * @return  integer
+     */
+    public function getMaxPostSize()
+    {
+        return OS::isWin() ? 8000 : 65536;
+    }
 }

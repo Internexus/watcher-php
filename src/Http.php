@@ -61,13 +61,30 @@ class Http
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function send()
+    public function send($items = null)
+    {
+        $items = $items ?? $this->entities;
+        $json = json_encode($items);
+        $jsonLength = strlen($json);
+        $count = count($items);
+
+        if ($jsonLength > $this->config->getMaxPostSize()) {
+            $chunkSize = floor($count / ceil($jsonLength / $this->config->getMaxPostSize()));
+            $chunks = array_chunk($items, $chunkSize > 0 ? $chunkSize : 1);
+
+            foreach ($chunks as $chunk) {
+                $this->send($chunk);
+            }
+        } else {
+            $this->sendChunk($items);
+        }
+    }
+
+    public function sendChunk($json)
     {
         $url = $this->config->getUrl() . 'ingest/' . $this->config->getToken();
-        $data = json_encode(['ingest' => $this->entities]);
+        $data = json_encode(['ingest' => $json]);
         $cmd = "{$this->curlPath} -X POST";
-
-        \Log::debug('watcher', [$this->entities[0]['name']]);
 
         foreach ($this->getHeaders() as $name => $value) {
             $cmd .= " --header \"$name: $value\"";
