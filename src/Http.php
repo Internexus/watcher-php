@@ -67,6 +67,8 @@ class Http
         $data = json_encode(['ingest' => $this->entities]);
         $cmd = "{$this->curlPath} -X POST";
 
+        \Log::debug('watcher', [$this->entities[0]['name']]);
+
         foreach ($this->getHeaders() as $name => $value) {
             $cmd .= " --header \"$name: $value\"";
         }
