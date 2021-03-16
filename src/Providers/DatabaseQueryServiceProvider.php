@@ -39,9 +39,9 @@ class DatabaseQueryServiceProvider extends ServiceProvider
             'connection' => $connection,
         ];
 
-        // if (config('watcher.bindings')) {
+        if (config('watcher.bindings')) {
             $context['bindings'] = $bindings;
-        // }
+        }
 
         $segment->addContext('db', $context)->stop($time);
     }
