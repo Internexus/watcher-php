@@ -8,6 +8,7 @@ use Internexus\Watcher\Providers\ExceptionsServiceProvider;
 use Internexus\Watcher\Providers\CommandServiceProvider;
 use Internexus\Watcher\Providers\EmailServiceProvider;
 use Internexus\Watcher\Providers\JobServiceProvider;
+use Internexus\Watcher\Commands\TestCommand;
 
 use Illuminate\Foundation\Application as LaravelApplication;
 use Laravel\Lumen\Application as LumenApplication;
@@ -59,6 +60,12 @@ class WatcherServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setupConfigFile();
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                TestCommand::class,
+            ]);
+        }
     }
 
     /**
