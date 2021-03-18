@@ -20,7 +20,7 @@ return [
     | Remote endpoint to send data.
     |
     */
-    'url' => env('WATCHER_URL', 'http://api.internexusweb.com.br/watcher/api/'),
+    'url' => env('WATCHER_URL', 'https://api.internexusweb.com.br/watcher/api/'),
 
     /*
     |--------------------------------------------------------------------------
