@@ -1,7 +1,7 @@
 {
     "name": "internexus/watcher-php",
-    "description": "PHP monitoring package",
-    "keywords": ["php", "laravel", "exception", "monitoring"],
+    "description": "PHP code execution monitoring package",
+    "keywords": ["php", "code execution", "error handler", "exception", "monitoring"],
     "license": "MIT",
     "authors": [
         {
@@ -22,16 +22,6 @@
     "autoload-dev": {
         "psr-4": {
             "Internexus\\Watcher\\Tests\\": "tests/"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Internexus\\Watcher\\WatcherServiceProvider"
-            ],
-            "aliases": {
-                "Watcher" : "Internexus\\Watcher\\Facades\\Watcher"
-            }
         }
     },
     "require-dev": {
