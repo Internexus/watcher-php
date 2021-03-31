@@ -86,6 +86,7 @@ class Watcher
      * Report a exception error.
      *
      * @param  \Throwable  $exception
+     * @return \Internexus\Watcher\Entities\Error
      */
     public function reportException(\Throwable $exception)
     {
@@ -100,6 +101,8 @@ class Watcher
 
         $segment = $this->segment('exception', substr($exception->getMessage(), 0, 50));
         $segment->addContext('error', $error)->stop();
+
+        return $error;
     }
 
     /**

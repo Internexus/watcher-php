@@ -27,7 +27,7 @@ class DatabaseQueryServiceProvider extends ServiceProvider
      * @param  string  $sql
      * @param  array   $bindings
      * @param  int     $time
-     * @param  string  $connections
+     * @param  string  $connection
      */
     protected function handleQuery($sql, array $bindings, $time, $connection)
     {

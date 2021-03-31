@@ -16,7 +16,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Internexus\\Watcher\\": "src"
+            "Internexus\\Watcher\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Internexus\\Watcher\\Tests\\": "tests/"
         }
     },
     "extra": {
@@ -28,5 +33,8 @@
                 "Watcher" : "Internexus\\Watcher\\Facades\\Watcher"
             }
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "10.0.x-dev"
     }
 }

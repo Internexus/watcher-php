@@ -9,7 +9,7 @@ class Config
      *
      * @var string
      */
-    private $url;
+    private $url = 'https://api.internexusweb.com.br/watcher/api/';
 
     /**
      * API token.
@@ -24,10 +24,13 @@ class Config
      * @param  string  $url
      * @param  string  $token
      */
-    public function __construct($url, $token)
+    public function __construct($token, $url = null)
     {
-        $this->setUrl($url);
-        $this->token = $token;
+        $this->setToken($token);
+
+        if (! empty( $url )) {
+            $this->setUrl($url);
+        }
     }
 
     /**
