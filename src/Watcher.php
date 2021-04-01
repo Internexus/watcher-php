@@ -112,7 +112,7 @@ class Watcher
      */
     public function flush()
     {
-        if (! $this->isCapturing()) {
+        if (! $this->config->isEnabled() || ! $this->isCapturing()) {
             return;
         }
 

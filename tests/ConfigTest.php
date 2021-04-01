@@ -13,6 +13,7 @@ final class ConfigTest extends TestCase
 
         $this->assertSame($config->getToken(), 'MYT0K3N');
         $this->assertSame($config->getUrl(), 'https://api.internexusweb.com.br/watcher/api/');
+        $this->assertSame($config->isEnabled(), true);
     }
 
     public function testFluentApi()
@@ -21,8 +22,11 @@ final class ConfigTest extends TestCase
 
         $this->assertInstanceOf(Config::class, $config->setToken('MYT0K3N'));
         $this->assertSame($config->getToken(), 'MYT0K3N');
-        
+
         $this->assertInstanceOf(Config::class, $config->setUrl('http://proxy.domain.com'));
         $this->assertSame($config->getUrl(), 'http://proxy.domain.com');
+
+        $this->assertInstanceOf(Config::class, $config->setEnabled(false));
+        $this->assertSame($config->isEnabled(), false);
     }
 }

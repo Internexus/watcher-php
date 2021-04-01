@@ -19,6 +19,13 @@ class Config
     private $token;
 
     /**
+     * Package enabled.
+     *
+     * @var boolean
+     */
+    private $enabled = true;
+
+    /**
      * Constructor.
      *
      * @param  string  $url
@@ -71,6 +78,29 @@ class Config
         $this->token = $token;
 
         return $this;
+    }
+
+    /**
+     * Set package as enabled.
+     *
+     * @param  boolean  $enabled
+     * @return $this
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Check if package is enable.
+     *
+     * @return boolean
+     */
+    public function isEnabled()
+    {
+        return ! empty( $this->token ) && $this->enabled;
     }
 
     /**

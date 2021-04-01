@@ -14,6 +14,7 @@ final class WatcherTest extends TestCase
     public function setUp() : void
     {
         $config = new Config('MYT0K3N');
+        $config->setEnabled(true);
 
         $this->watcher = new Watcher($config);
         $this->watcher->transaction('test');
@@ -26,6 +27,6 @@ final class WatcherTest extends TestCase
 
     public function testStartSegment()
     {
-        $this->assertInstanceOf(Segment::class, $this->watcher->segment('test_segment'));        
+        $this->assertInstanceOf(Segment::class, $this->watcher->segment('test_segment'));
     }
 }

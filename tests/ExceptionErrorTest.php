@@ -14,6 +14,7 @@ final class ExceptionErrorTest extends TestCase
     public function setUp() : void
     {
         $config = new Config('MYT0K3N');
+        $config->setEnabled(true);
 
         $this->watcher = new Watcher($config);
         $this->watcher->transaction('test');
