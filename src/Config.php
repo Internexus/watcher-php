@@ -26,6 +26,13 @@ class Config
     private $enabled = true;
 
     /**
+     * Max numbers of items to collect.
+     *
+     * @var int
+     */
+    protected $maxItems = 100;
+
+    /**
      * Constructor.
      *
      * @param  string  $url
@@ -121,6 +128,16 @@ class Config
     public function getToken()
     {
         return $this->token;
+    }
+
+    /**
+     * Get max number of items.
+     *
+     * @return int
+     */
+    public function getMaxItems()
+    {
+        return $this->maxItems;
     }
 
     /**

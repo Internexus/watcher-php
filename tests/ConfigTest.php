@@ -14,6 +14,7 @@ final class ConfigTest extends TestCase
         $this->assertSame($config->getToken(), 'MYT0K3N');
         $this->assertSame($config->getUrl(), 'https://api.internexusweb.com.br/watcher/api/');
         $this->assertSame($config->isEnabled(), true);
+        $this->assertSame($config->getMaxItems(), 100);
     }
 
     public function testFluentApi()

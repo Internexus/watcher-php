@@ -18,7 +18,7 @@ class Http
      *
      * @var array
      */
-    private $entities;
+    private $entities = [];
 
     /**
      * Constructor.
@@ -39,7 +39,9 @@ class Http
      */
     public function addEntity(Entity $entity)
     {
-        $this->entities[] = $entity;
+        if (count($this->entities) <= $this->config->getMaxItems()) {
+            $this->entities[] = $entity;
+        }
     }
 
     /**
