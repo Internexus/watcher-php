@@ -54,6 +54,7 @@ class Http
         return [
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
+            'X-Watcher-Key' => $this->config->getToken(),
         ];
     }
 
@@ -82,9 +83,15 @@ class Http
         }
     }
 
+    /**
+     * Send a portion of the load to the remote service.
+     *
+     * @param string $data
+     * @return void
+     */
     public function sendChunk($json)
     {
-        $url = $this->config->getUrl() . 'ingest/' . $this->config->getToken();
+        $url = $this->config->getUrl() . 'ingest';
         $data = json_encode(['ingest' => $json]);
         $cmd = "{$this->curlPath} -X POST";
 
